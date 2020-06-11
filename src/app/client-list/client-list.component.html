@@ -1,0 +1,10 @@
+<ul class="list-group">
+  <li *ngFor="let client of clients" class="list-group-item d-flex justify-content-between align-items-center">
+    <a routerLink="/billclient/{{client.id}}">
+      <div class="d-inline-block text-secondary">
+      <span class="h4">{{ client.name }}</span><br>
+      <span>{{ client.mobile }}</span>
+    </div></a>    
+    <span class="badge badge-primary badge-pill">{{ client.demand }}</span>
+  </li>
+</ul>

@@ -65,10 +65,15 @@ export class BillEditorComponent implements OnInit {
     this.postBill();
   }
 
+  today() {
+    let d = new Date();
+    return d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+  }
+
   postBill() {
     let bill = {
       'no' : 0,
-      'date' : new Date(),
+      'date' : this.today(),
       'client_id' : this.client.id,
       'cost' : this.bill.cost,
       'count': this.billForm.value.count,
@@ -80,6 +85,10 @@ export class BillEditorComponent implements OnInit {
     console.log('Trying to post ...' + bill);
     this.billService.postBill(bill).subscribe(res => { 
       console.log('Bill posted');
+      let success = true;
+      if (success) {
+        this.client.shipped = true;
+      }
       this.location.back();
     });
   }

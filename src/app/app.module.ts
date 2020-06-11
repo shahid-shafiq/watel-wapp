@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BillEditorComponent } from './bill-editor/bill-editor.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { DispatchComponent } from './dispatch/dispatch.component';
+import { ClientListComponent } from './client-list/client-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FooterComponent } from './footer/footer.component';
     BillEditorComponent,
     HeaderComponent,
     FooterComponent,
+    DispatchComponent,
+    ClientListComponent,
   ],
   imports: [
     BrowserModule,

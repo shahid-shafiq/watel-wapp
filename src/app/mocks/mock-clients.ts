@@ -8,7 +8,8 @@ export const CLIENTS: Client[] = [
     street: 'Tulsa Road',
     mobile: '03215176024',
     email: 'mshahid@gmail.com',
-    demand: 5
+    demand: 5,
+    shipped: false,
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const CLIENTS: Client[] = [
     street: 'Street 1',
     mobile: '03215176024',
     email: 'sadia@watel.com',
-    demand: 4
+    demand: 4,
+    shipped: false,
   },
   {
     id: 3,
@@ -26,7 +28,8 @@ export const CLIENTS: Client[] = [
     street: 'New Lalazar',
     mobile: '03215176024',
     email: 'umair@watel.com',
-    demand: 3
+    demand: 3,
+    shipped: false,
   },
   {
     id: 4,
@@ -35,6 +38,7 @@ export const CLIENTS: Client[] = [
     street: 'Hill view Lane',
     mobile: '03215176024',
     email: 'amir@watel.com',
-    demand: 3
+    demand: 3,
+    shipped: false,
   }
 ];

@@ -1,4 +1,7 @@
 <h2>Clients</h2>
+<app-client-list [clients]="clients"></app-client-list>
+
+<!--
 <ul class="list-group">
   <li *ngFor="let client of clients" class="list-group-item d-flex justify-content-between align-items-center">
     <a routerLink="/billclient/{{client.id}}">
@@ -9,7 +12,7 @@
     <span class="badge badge-primary badge-pill">{{ client.demand }}</span>
   </li>
 </ul>
-
+-->
 <!--
 <li *ngFor="let client of clients" 
     class="list-group-item d-flex justify-content-between align-items-center h4">

@@ -6,4 +6,5 @@ export interface Client {
   mobile: string;
   email: string;
   demand: number;
+  shipped : boolean;
 }

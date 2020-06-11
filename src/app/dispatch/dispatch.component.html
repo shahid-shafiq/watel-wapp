@@ -1,0 +1,54 @@
+<div class="container">
+  <h3 class="h3">Dispatch Unit</h3>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <form [formGroup]="dispatchForm" (ngSubmit)="onSubmit()">
+      
+        <div class="form-group">
+          <label>
+            Dispatch Code:
+            <input type="text" readonly class="form-control" formControlName="code">
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Date:
+            <input type="date" class="form-control" formControlName="date">
+          </label>
+        </div>
+      
+        <div>
+          <label>
+            Bottles:
+            <input type="number" class="form-control" formControlName="count">
+          </label>
+        </div>
+      
+        <select class="form-control">
+          <option *ngFor="let client of clientlist">Van A</option>
+          <option value="2">Van B</option>
+        </select>
+
+      <!--
+        <div formArrayName="clients">
+          <h3>Clients</h3>
+          <select class="form-control">
+            <option *ngFor="let client of clientlist"><option>Van A</option>
+            <option value="2">Van B</option>
+          </select>
+          <button (click)="addClient()">Add Client</button>
+        
+          <div *ngFor="let client of clients.controls; let i=index">
+            <label>
+              Client:
+              <select type="text" [formControlName]="i">
+            </label>
+          </div>
+        </div>
+      -->
+        <button class="btn btn-primary" type="submit" [disabled]="!dispatchForm.valid">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

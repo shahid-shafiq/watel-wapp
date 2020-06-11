@@ -3,7 +3,6 @@ import { ClientService } from '../services/client.service';
 import { MessageService } from '../services/message.service';
 
 import { Client } from '../interface/client';
-import { CLIENTS } from '../mocks/mock-clients';
 
 @Component({
   selector: 'app-clients',

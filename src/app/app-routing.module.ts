@@ -4,7 +4,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BillDetailComponent } from './bill-detail/bill-detail.component';
 import { BillEditorComponent } from './bill-editor/bill-editor.component';
-
+import { DispatchComponent } from './dispatch/dispatch.component';
 
 const routes : Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -12,6 +12,7 @@ const routes : Routes = [
   { path: 'billclient/:id', component: BillEditorComponent },
   { path: 'client/:id', component: BillDetailComponent },
   { path: 'clients', component: ClientsComponent },
+  { path: 'dispatch', component: DispatchComponent },
 ];
 
 @NgModule({
