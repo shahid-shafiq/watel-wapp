@@ -1,0 +1,41 @@
+<div *ngIf="client" class="container">
+  <h3 class="h3">Order Shipped</h3>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>
+            Client Name:
+            <input type="text" readonly class="form-control" formControlName="client">
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Bottles:
+            <input type="number" class="form-control" formControlName="count">
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Discount (%):
+            <input type="decimal" class="form-control" formControlName="discount">
+          </label>
+        </div>
+
+        <div>
+        <p>
+          Amount = {{billForm.value.count * bill.cost | currency:'Rs. '}}
+          <br>
+          Discount = {{billForm.value.discount | number}}
+          <br>
+          Total amount due  = {{billForm.value.count * bill.cost * (1-billForm.value.discount/100)  | currency:'Rs. '}}
+        </p>
+        </div>
+        <button class="btn btn-primary" type="submit" (click)="prepayBill()" [disabled]="!billForm.valid">Cash Paid</button>
+        <button class="btn btn-secondary" type="submit" (click)="postpayBill()" [disabled]="!billForm.valid">Generate Bill</button>
+      </form>
+    </div>
+  </div>
+</div>

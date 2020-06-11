@@ -1,0 +1,11 @@
+<h3>Top Clients</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let client of clients" 
+  class="col-1-4"
+  routerLink="/client/{{client.id}}"
+  >
+    <div class="module client">
+      <h4>{{client.name}}</h4>
+    </div>
+  </a>
+</div>

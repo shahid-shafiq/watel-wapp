@@ -1,0 +1,12 @@
+<div *ngIf="client">
+  <h2>{{ client.name | uppercase }}</h2>
+  <h2>Bill</h2>
+  <div>
+    <label>No. of bottles:
+    <input [(ngModel)]="client.demand" placeholder="demand"/>
+    </label>
+  </div>
+  <div>
+    <button (click)="save()">save</button>
+  </div>
+</div>
