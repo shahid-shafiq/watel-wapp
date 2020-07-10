@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ClientService } from '../services/client.service';
+import { ApiService } from '../services/api.service';
 import { BillService } from '../services/bill.service';
 import { FormGroup, FormControl }  from '@angular/forms';
 
@@ -21,12 +22,14 @@ export class BillEditorComponent implements OnInit {
   });
 
   @Input() client: Client;
+  delivery : any;
   bill = {'cost':140, 'mode':''};
 
   constructor(
     private route : ActivatedRoute,
     private clientService : ClientService,
     private billService : BillService,
+    private apiService : ApiService,
     private location : Location
   ) { }
 
@@ -44,9 +47,11 @@ export class BillEditorComponent implements OnInit {
 
   getClient(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.clientService.getClient(id).subscribe(res => { 
-      this.client = res;
+    this.apiService.getDelivery(id).subscribe(res => { 
+      this.delivery = res;
+      this.client = res.client;
       this.updateBill();
+      console.log(this.delivery);
     });
   }
 
@@ -59,9 +64,6 @@ export class BillEditorComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.billForm.value.client);
-    console.warn(this.bill);
-    console.warn(this.client);
     this.postBill();
   }
 
@@ -74,22 +76,24 @@ export class BillEditorComponent implements OnInit {
     let bill = {
       'no' : 0,
       'date' : this.today(),
-      'client_id' : this.client.id,
-      'cost' : this.bill.cost,
+      'delivery_id' : this.delivery.id,
       'count': this.billForm.value.count,
+      'cost' : this.bill.cost,
       'discount': this.billForm.value.discount,
       'amount': this.billForm.value.count * this.bill.cost * (1-this.billForm.value.discount/100) ,
       'payment': this.bill.mode,
       'status' : this.bill.mode === 'cash' ? 'paid' : 'unpaid',
-    };
-    console.log('Trying to post ...' + bill);
+    };    
     this.billService.postBill(bill).subscribe(res => { 
       console.log('Bill posted');
       let success = true;
       if (success) {
-        this.client.shipped = true;
+        this.apiService.deliveredTo(this.delivery.id).subscribe(res => {
+          console.log('delivery status');
+          this.client.shipped = true;
+          this.location.back();
+        })
       }
-      this.location.back();
     });
   }
 

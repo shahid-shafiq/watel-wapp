@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, shareReplay } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -21,6 +21,8 @@ export class ClientService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  private clients : Observable<Client[]>;
+
   constructor(
     private messageService: MessageService,
     private http: HttpClient,
@@ -35,7 +37,8 @@ export class ClientService {
     return this.http.get<Client[]>(this.clientsUrl)
       .pipe(
         tap(_ => this.log('fetched clients')),
-        catchError(this.handleError<Client[]>('getClients', []))
+        catchError(this.handleError<Client[]>('getClients', [])),
+        shareReplay(1)
         );
   }
 

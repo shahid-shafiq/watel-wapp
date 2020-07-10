@@ -4,13 +4,20 @@
     <div class="col-sm-8 offset-sm-2">
       <form [formGroup]="dispatchForm" (ngSubmit)="onSubmit()">
       
-        <div class="form-group">
-          <label>
-            Dispatch Code:
-            <input type="text" readonly class="form-control" formControlName="code">
-          </label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label>
+                Dispatch Code:
+                <input type="text" readonly class="form-control" formControlName="code">
+              </label>
+            </div>
+          </div>
+          <div class="col text-right">
+            <button class="btn btn-lg btn-primary mt-3" type="submit" [disabled]="!dispatchForm.valid">Save</button>
+          </div>
         </div>
-
+        
         <div>
           <label>
             Date:
@@ -24,30 +31,32 @@
             <input type="number" class="form-control" formControlName="count">
           </label>
         </div>
-      
-        <select class="form-control">
-          <option *ngFor="let client of clientlist">Van A</option>
-          <option value="2">Van B</option>
-        </select>
 
-      <!--
-        <div formArrayName="clients">
-          <h3>Clients</h3>
-          <select class="form-control">
-            <option *ngFor="let client of clientlist"><option>Van A</option>
-            <option value="2">Van B</option>
+        <div>
+          <label>
+            Van:
+          </label>
+          <select class="form-control" formControlName="van" (change)="onVanSelect()">
+            <option *ngFor="let v of vans; let ix=index"
+              value="{{ix}}">{{v.title + ' ' + v.licenseplate}}</option>
           </select>
-          <button (click)="addClient()">Add Client</button>
-        
-          <div *ngFor="let client of clients.controls; let i=index">
-            <label>
-              Client:
-              <select type="text" [formControlName]="i">
-            </label>
+        </div>
+      
+        <label>
+          Clients:
+        </label>
+        <app-client-list [clients]="list"></app-client-list>
+        <div class="row">
+          <div class="col">
+            <select class="form-control" formControlName="client">
+              <option *ngFor="let m of members"
+                value="{{m.id}}">{{m.name}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <a class="btn btn-sm btn-secondary text-light mt-1" (click)="addClient()">Add Client</a>
           </div>
         </div>
-      -->
-        <button class="btn btn-primary" type="submit" [disabled]="!dispatchForm.valid">Save</button>
       </form>
     </div>
   </div>

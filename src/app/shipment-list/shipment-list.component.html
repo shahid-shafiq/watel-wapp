@@ -1,0 +1,21 @@
+<ul class="list-group">
+  <li *ngFor="let item of shipment" class="list-group-item">
+    <div *ngIf="item.delivered; else showPending" class="d-flex justify-content-between align-items-center">
+      <div class="d-inline-block text-muted">
+        <span class="h4">{{ item.client.name }}</span><br>
+        <span>{{ item.client.mobile }}</span>
+      </div>
+    <span class="badge badge-success badge-pill">{{ item.client.demand }}</span>
+    </div>
+    <ng-template #showPending>
+    <div class="d-flex justify-content-between align-items-center">
+      <a routerLink="/billclient/{{item.id}}">
+        <div class="d-inline-block text-secondary">
+          <span class="h4">{{ item.client.name }}</span><br>
+          <span>{{ item.client.mobile }}</span>
+        </div></a>
+      <span class="badge badge-primary badge-pill">{{ item.client.demand }}</span>
+    </div>
+    </ng-template>
+  </li>
+</ul>

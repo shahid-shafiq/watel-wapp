@@ -19,6 +19,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DispatchComponent } from './dispatch/dispatch.component';
 import { ClientListComponent } from './client-list/client-list.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { ShipmentComponent } from './shipment/shipment.component';
+import { ShipmentListComponent } from './shipment-list/shipment-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { ClientListComponent } from './client-list/client-list.component';
     FooterComponent,
     DispatchComponent,
     ClientListComponent,
+    DeliveryComponent,
+    ShipmentComponent,
+    ShipmentListComponent,
   ],
   imports: [
     BrowserModule,
